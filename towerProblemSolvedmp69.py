@@ -1,6 +1,10 @@
 heights_string = input("Enter numbers: ").split(",")
 heights = [int(x) for x in heights_string]
+
+#############################################################################################################
+
 import time
+
 def getKeyPoints(heights): # Finds indexes for special towers. More mentioned below
     ascend = True
     key_points = []
@@ -19,6 +23,8 @@ def getKeyPoints(heights): # Finds indexes for special towers. More mentioned be
         key_points.append(len(heights)-1)
     return key_points
 key_points = getKeyPoints(heights) # Indexes of towers that act as sort of "walls" for gaps
+
+
 # Volume for gaps of water
 def getVolume():
     if len(key_points) == 0 or len(key_points) == 1:
@@ -37,6 +43,9 @@ def getVolume():
     return volumeTotal
 volumeFinal = 0
 volumeTotal = getVolume()
+
+#############################################################################################################
+
 while volumeTotal != 0: # Once no more volume can be added, end loop
     volumeFinal += volumeTotal
     # Gaps will be "filled" with water, and the remain
@@ -48,4 +57,6 @@ while volumeTotal != 0: # Once no more volume can be added, end loop
                 heights[indexVal] = smallest_height
     key_points = getKeyPoints(heights)
     volumeTotal = getVolume()
+    
+    
 print(volumeFinal)
